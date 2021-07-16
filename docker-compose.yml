@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  unrealircd:
+    build: "unrealircd-docker/"
+    volumes:
+      - "unrealircd:/home/unrealircd/unrealircd/data"
+      - "./config/unrealircd.conf:/home/unrealircd/unrealircd/conf/unrealircd.conf"
+      - "./config/server.cert.pem:/home/unrealircd/unrealircd/conf/tls/server.cert.pem"
+      - "./config/server.key.pem:/home/unrealircd/unrealircd/conf/tls/server.key.pem"
+    ports:
+      - "6667:6667"
+      - "6697:6697"
+      - "6900:6900"
+
+volumes:
+  unrealircd:
