@@ -3,13 +3,10 @@ FROM ubuntu:20.04
 ENV TERM="vt100"
 
 RUN apt update -y && \
-    apt install -y wget curl gcc make libssl-dev file supervisor jq && \
+    apt install -y wget curl gcc make libssl-dev file jq && \
     rm -rf /var/lib/apt/lists/*
 
 RUN groupadd -r unrealircd && useradd -r -m -g unrealircd unrealircd
-
-RUN mkdir -p /var/log/supervisor && \
-    sed -i "/\[supervisord\]/a nodaemon=true" /etc/supervisor/supervisord.conf
 
 RUN wget $(curl https://www.unrealircd.org/downloads/list.json -s | jq ".[].Stable.downloads.src" -r) -O unrealircd.tar.gz && \
     tar -xvf unrealircd.tar.gz && \
