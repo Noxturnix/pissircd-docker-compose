@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 ENV TERM="vt100"
 
 RUN apt update -y && \
-    apt install -y wget git curl gcc make libssl-dev file && \
+    DEBIAN_FRONTEND="noninteractive" apt install -y wget git curl gcc make libssl-dev file build-essential autotools-dev automake pkg-config && \
     rm -rf /var/lib/apt/lists/*
 
 RUN groupadd -r pissircd && useradd -r -m -g pissircd pissircd
