@@ -8,7 +8,7 @@ RUN apt update -y && \
 
 RUN groupadd -r pissircd && useradd -r -m -g pissircd pissircd
 
-RUN git clone https://github.com/pissnet/pissircd pissircd && \
+RUN git clone --depth=1 https://github.com/pissnet/pissircd pissircd && \
     chown -R pissircd:pissircd pissircd
 
 USER pissircd
